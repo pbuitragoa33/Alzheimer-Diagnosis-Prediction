@@ -11,24 +11,21 @@ The Alzheimer Risk Predictor is a full-stack web application that uses a trained
 - **Backend**: FastAPI with RESTful API endpoints
 - **Frontend**: React with modern UI/UX design
 - **ML Model**: LightGBM classifier with preprocessing pipeline
-- **Data Processing**: Scikit-learn preprocessing pipeline (imputation, encoding, scaling)
+- **Data Processing**: Scikit-learn column transformer pipeline (imputation, encoding, scaling)
 
 ## Features
 
 ### Backend API
 - **Prediction Endpoint**: Real-time Alzheimer risk assessment
-- **Health Check**: API status monitoring
+- **Health Check**: API statu
 - **Input Validation**: Data range and format validation
 - **Risk Factor Analysis**: Automated identification of contributing factors
-- **CORS Support**: Cross-origin requests enabled for frontend integration
 
 ### Frontend Interface
 - **Interactive Form**: 24 input fields with sliders and dropdowns
 - **Real-time Validation**: Client-side input validation
-- **Risk Visualization**: Color-coded results with confidence scores
+- **Risk Visualization**: Results with confidence scores
 - **Risk Factor Display**: Detailed breakdown of identified risk factors
-- **Responsive Design**: Mobile-friendly interface
-- **Professional UI**: Modern gradient design with intuitive icons
 
 ## Input Variables
 
