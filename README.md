@@ -1,76 +1,244 @@
-# Alzheimer's Disease Diagnosis Prediction
+# Alzheimer Risk Predictor - Deployment
 
-This project aims to build a Machine Learning model to predict Alzheimer's disease diagnosis. The model is trained using a comprehensive dataset containing various demographic, health, and lifestyle factors.
+This project provides a comprehensive Machine Learning solution for predicting Alzheimer's disease risk, featuring a FastAPI backend and React frontend with an intuitive user interface for healthcare assessment.
 
-## Project Goals
+## Project Overview
 
-- Predict Alzheimer's disease diagnosis.
-- Utilize a dataset with demographic, health, and lifestyle information.
-- Perform extensive data preprocessing, including handling missing values, encoding categorical features, and scaling numerical data.
-- Implement and tune multiple machine learning models for classification.
-- Evaluate model performance using standard classification metrics.
+The Alzheimer Risk Predictor is a full-stack web application that uses a trained LightGBM model to assess the probability of Alzheimer's disease based on 24 demographic, health, lifestyle, and genetic factors. The application provides real-time predictions with confidence scores and identifies key risk factors.
 
-## Data Sources
+## Architecture
 
-The data for this project comes from an `AlzheimerData.csv` file. The dataset includes features such as:
+- **Backend**: FastAPI with RESTful API endpoints
+- **Frontend**: React with modern UI/UX design
+- **ML Model**: LightGBM classifier with preprocessing pipeline
+- **Data Processing**: Scikit-learn preprocessing pipeline (imputation, encoding, scaling)
 
-- **Demographic Information**: Country, Age, Gender, Education Level, Marital Status, Employment Status, Urban/Rural residency, Income Level.
-- **Health Metrics**: BMI, Cognitive Test Score, Cholesterol Level, Diabetes, Hypertension, Alzheimer in Family, Genetic Risk.
-- **Lifestyle Factors**: Physical Activity Level, Smoking Status, Alcohol Consumption, Depression Level, Sleep Quality, Dietary Habits, Air Pollution Exposure, Social Engagement Level, Stress Levels.
-- **Target Variable**: Alzheimer Diagnosis.
+## Features
 
-## Approach
+### Backend API
+- **Prediction Endpoint**: Real-time Alzheimer risk assessment
+- **Health Check**: API status monitoring
+- **Input Validation**: Data range and format validation
+- **Risk Factor Analysis**: Automated identification of contributing factors
+- **CORS Support**: Cross-origin requests enabled for frontend integration
 
-1.  **Data Preprocessing**:
-    * Import and initial inspection of the dataset.
-    * Correction of data types for categorical features.
-    * Handling of missing values through imputation (median for numerical, mode for categorical).
-    * One-Hot Encoding for multi-category nominal features.
-    * Binary Encoding for binary categorical features.
-    * Scaling of numerical features.
-    * Label encoding for the target variable `AlzheimerDiagnosis`.
-    * Saving of preprocessed datasets and processing objects.
+### Frontend Interface
+- **Interactive Form**: 24 input fields with sliders and dropdowns
+- **Real-time Validation**: Client-side input validation
+- **Risk Visualization**: Color-coded results with confidence scores
+- **Risk Factor Display**: Detailed breakdown of identified risk factors
+- **Responsive Design**: Mobile-friendly interface
+- **Professional UI**: Modern gradient design with intuitive icons
 
-2.  **Modeling**:
-    * Loading of preprocessed training and testing data.
-    * Hyperparameter tuning using `Optuna` for various classification models, including:
-        * Logistic Regression
-        * K-Nearest Neighbors
-        * Support Vector Machine (SVM)
-        * Decision Tree
-        * Random Forest
-        * Gradient Boosting
-        * XGBoost
-        * LightGBM
+## Input Variables
 
-3.  **Model Evaluation**:
-    * Assessment of model accuracy and reliability using metrics such as:
-        * Classification Report
-        * Confusion Matrix
-        * AUC-ROC Curve
-    * Saving the best performing model.
+The model analyzes 24 key factors:
 
-## Requirements
+### Demographic Information
+- **Country**: 20 supported countries (Spain, Argentina, South Africa, China, Sweden, etc.)
+- **Age**: 50-94 years
+- **Gender**: Male/Female
+- **Education Level**: 0-19 years
 
-The project requires the following Python libraries:
+### Health Metrics
+- **BMI**: 18.5-35.0
+- **Cognitive Test Score**: 30-99 points
+- **Physical Activity Level**: Low/Medium/High
+- **Diabetes**: Yes/No
+- **Hypertension**: Yes/No
+- **Cholesterol Level**: Normal/High
 
-* `pandas`
-* `numpy`
-* `matplotlib.pyplot`
-* `optuna`
-* `seaborn`
-* `scikit-learn` 
-* `scipy.stats`
-* `joblib`
-* `xgboost`
-* `lightgbm`
-* `os`
+### Lifestyle Factors
+- **Smoking Status**: Never/Former/Current
+- **Alcohol Consumption**: Never/Occasionally/Regularly
+- **Dietary Habits**: Healthy/Average/Unhealthy
+- **Sleep Quality**: Poor/Average/Good
 
-## Installation
+### Mental & Social Factors
+- **Depression Level**: Low/Medium/High
+- **Stress Levels**: Low/Medium/High
+- **Social Engagement**: Low/Medium/High
+- **Marital Status**: Single/Married/Widowed
 
-To run this project, clone the repository and install the required libraries.
+### Environmental & Genetic
+- **Air Pollution Exposure**: Low/Medium/High
+- **Urban/Rural**: Living environment
+- **Alzheimer in Family**: Family history
+- **Genetic Risk**: Genetic predisposition
 
+### Socioeconomic
+- **Employment Status**: Employed/Unemployed/Retired
+- **Income Level**: Low/Medium/High
+
+## Prerequisites
+
+### Backend Requirements
+- Python 3.8+
+- pip package manager
+
+### Frontend Requirements
+- Node.js 14+
+- npm or yarn
+
+### Required Files
+- `models/LightGBM_model.joblib`: Trained LightGBM model
+- `models/the_preprocessor.joblib`: Preprocessing pipeline
+
+## Installation & Setup
+
+### 1. Clone Repository
 ```bash
-git clone https://github.com/pbuitragoa33/Alzheimer-Diagnosis-Prediction.git
+git clone <your-repository-url>
+cd alzheimer-predictor
+```
+
+### 2. Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Ensure model files are in place
+# backend/models/LightGBM_model.joblib
+# backend/models/the_preprocessor.joblib
+```
+
+### 3. Frontend Setup
+```bash
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Install required packages
+npm install lucide-react
+```
+
+## Running the Application
+
+### 1. Start Backend Server
+```bash
+cd backend
+python main.py
+```
+The API will be available at: `http://localhost:8000`
+
+API Documentation: `http://localhost:8000/docs`
+
+### 2. Start Frontend Development Server
+```bash
+cd frontend
+npm start
+```
+The web application will be available at: `http://localhost:3000`
+
+## API Endpoints
+
+### Core Endpoints
+- `GET /`: API status and health check
+- `POST /predict`: Main prediction endpoint
+- `GET /health`: Detailed health status
+- `GET /model-info`: Model information and metadata
+- `POST /validate`: Input validation endpoint
+
+### Example API Usage
+```javascript
+// Prediction request
+const response = await fetch('http://localhost:8000/predict', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    Country: 'USA',
+    Age: 65,
+    Gender: 'Male',
+    EducationLevel: 12,
+    BMI: 25,
+    // ... other 19 parameters
+  })
+});
+
+const result = await response.json();
+// Returns: prediction, confidence, risk_factors, message
+```
+
+
+## Dependencies
+
+### Backend (requirements.txt)
+```
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pandas==2.1.3
+numpy==1.25.2
+scikit-learn==1.3.2
+lightgbm==4.1.0
+joblib==1.3.2
+pydantic==2.5.0
+python-multipart==0.0.6
+```
+
+### Frontend (package.json)
+```json
+{
+  "dependencies": {
+    "react": "^18.x",
+    "lucide-react": "^0.x"
+  }
+}
+```
+
+## Model Information
+
+- **Algorithm**: LightGBM Classifier
+- **Features**: 24 input variables
+- **Target**: Binary classification (Alzheimer: Yes/No)
+- **Preprocessing**: Comprehensive pipeline including imputation, encoding, and scaling
+- **Performance**: Optimized through hyperparameter tuning
+
+## Security & Privacy
+
+- **Data Handling**: No data is stored permanently
+- **CORS Configuration**: Restricted to localhost during development
+- **Input Validation**: Server-side validation for all inputs
+- **Privacy**: All processing happens locally, no external data transmission
+
+## Deployment Considerations
+
+### Production Deployment
+1. **Environment Variables**: Configure for production URLs
+2. **HTTPS**: Enable SSL certificates
+3. **Database**: Consider adding user session management
+4. **Monitoring**: Implement logging and monitoring
+5. **Scaling**: Use proper ASGI servers like Gunicorn + Uvicorn
+
+
+
+### Health Checks
+- Backend health: `http://localhost:8000/health`
+- Model status: `http://localhost:8000/model-info`
+
+## Medical Disclaimer
+
+⚠️ **Important**: This application is for educational and research purposes only. The predictions should not be used as a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare professionals for medical decisions.
+
+---
+
+**Version**: 1.0.0  
+**Last Updated**: June 2025  
+**Technology Stack**: FastAPI + React + LightGBM
 
 
