@@ -77,6 +77,8 @@ The model analyzes 24 key factors:
 - Node.js 14+
 - npm or yarn
 
+### Important Disclaimer: The sliders (used for numerical variables in deployment) has the range of the variable between itself, ex:  minAge(slider)maxAge ----> 50(when you move the bottom only change this value)94
+
 ### Required Files
 - `models/LightGBM_model.joblib`: Trained LightGBM model
 - `models/the_preprocessor.joblib`: Preprocessing pipeline
@@ -85,7 +87,7 @@ The model analyzes 24 key factors:
 
 ### 1. Clone Repository
 ```bash
-git clone <your-repository-url>
+git clone <https://github.com/pbuitragoa33/Alzheimer-Diagnosis-Prediction.git>
 cd alzheimer-predictor
 ```
 
@@ -204,14 +206,8 @@ python-multipart==0.0.6
 - **Features**: 24 input variables
 - **Target**: Binary classification (Alzheimer: Yes/No)
 - **Preprocessing**: Comprehensive pipeline including imputation, encoding, and scaling
-- **Performance**: Optimized through hyperparameter tuning
+- **Performance**: Optimized through hyperparameter tuning with Optuna
 
-## Security & Privacy
-
-- **Data Handling**: No data is stored permanently
-- **CORS Configuration**: Restricted to localhost during development
-- **Input Validation**: Server-side validation for all inputs
-- **Privacy**: All processing happens locally, no external data transmission
 
 ## Deployment Considerations
 
@@ -236,6 +232,6 @@ python-multipart==0.0.6
 
 **Version**: 1.0.0  
 **Last Updated**: June 2025  
-**Technology Stack**: FastAPI + React + LightGBM
+**Technology Stack in a nutshell**: FastAPI + React + LightGBM
 
 
