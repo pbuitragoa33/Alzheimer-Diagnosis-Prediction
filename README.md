@@ -36,9 +36,7 @@ The data for this project comes from an AlzheimerData.csv file. The dataset incl
    - Loading of preprocessed training and testing data.
    - Hyperparameter tuning using Optuna for various classification models, including:
      - Multi-Layer Perceptron
-     - K-Nearest Neighbors
      - Support Vector Machine (SVM)
-     - Decision Tree
      - Random Forest
      - Gradient Boosting
      - XGBoost
